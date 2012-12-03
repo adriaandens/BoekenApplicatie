@@ -32,5 +32,16 @@ namespace BoekenApplicatie.Properties {
                 return ((string)(this["BoekenDatabaseConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\Boeken.mdf;Integrated S" +
+            "ecurity=True;User Instance=True")]
+        public string BoekenConnectionString {
+            get {
+                return ((string)(this["BoekenConnectionString"]));
+            }
+        }
     }
 }
