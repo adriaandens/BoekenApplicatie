@@ -51,6 +51,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boeken.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Boeken.dbml</DependentUpon>
+    </Compile>
     <Compile Include="BoekenDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Boeken.dbml.layout">
+      <DependentUpon>Boeken.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="DataSet.resx">
       <DependentUpon>DataSet.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +102,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Boeken.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Boeken.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="BoekenDataSet.xsc">
@@ -161,6 +175,9 @@
       <DependentUpon>Boeken.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
