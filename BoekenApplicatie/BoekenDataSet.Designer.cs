@@ -340,6 +340,7 @@ namespace BoekenApplicatie {
             this.DataSetName = "BoekenDataSet";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/BoekenDataSet.xsd";
+            this.Locale = new global::System.Globalization.CultureInfo("en-US");
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableBoek = new BoekDataTable();

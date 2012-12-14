@@ -41,73 +41,82 @@ namespace BoekenApplicatie
         private void titelzoeken_TextChanged(object sender, EventArgs e)
         {
             string filterTekst = "titel like '%" + titelzoeken.Text.Trim() + "%'";
-            BoekenBindingSource.Filter = filterTekst;
+            boekBindingSource.Filter = filterTekst;
         }
 
         private void isbnzoeken_TextChanged(object sender, EventArgs e)
         {
             string filterTekst = "isbn like '%" + isbnzoeken.Text.Trim() + "%'";
-            BoekenBindingSource.Filter = filterTekst;
+            boekBindingSource.Filter = filterTekst;
         }
 
         private void Cat_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRowView cat = Cat_Search.SelectedItem as DataRowView;
-            string sValue = "";
-            if (cat != null)
-            {
-                sValue = cat.Row["naam"] as string;
-            }
-            var filter = from c in dc.Categories
-                                         where c.naam == sValue
-                                         from b in dc.Boeks
-                                         where b.categorieID == c.categorieID
-                                         select new { b.categorieID };
-            string nieuw = "";
-            foreach (var prod in filter)
-            {
-                nieuw = prod.categorieID;
-            }
-            this.Text = nieuw;
-            string filterTekst = "categorieID like '" + nieuw  + "'";
-            BoekenBindingSource.Filter = filterTekst;
+            this.Text = Cat_Search.SelectedValue.ToString();
+            string filterTekst = "categorieID like '" + Cat_Search.SelectedValue.ToString() + "'";
+            boekBindingSource.Filter = filterTekst;
         }
 
         private void all_Click(object sender, EventArgs e)
         {
             titelzoeken.Text = "";
             isbnzoeken.Text = "";
-            BoekenBindingSource.RemoveFilter();
+            boekBindingSource.RemoveFilter();
 
         }
 
         private void titelzoeken_TextChanged_1(object sender, EventArgs e)
         {
             string filterTekst = "titel like '%" + titelzoeken.Text.Trim() + "%'";
-            BoekenBindingSource.Filter = filterTekst;
+            boekBindingSource.Filter = filterTekst;
         }
 
         private void Uit_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRowView uit = Uit_Search.SelectedItem as DataRowView;
-            string sValue = "";
-            if (uit != null)
+
+            string filterTekst = "uitgeverID like '" + Uit_Search.SelectedValue.ToString() + "'";
+            boekBindingSource.Filter = filterTekst;
+        }
+
+        private void addtolist_Click(object sender, EventArgs e)
+        {
+            bool isDubbelProduct = false;
+            try
             {
-                sValue = uit.Row["naam"] as string;
+                DataRowView lijst = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+                BoekenDataSet.BoekRow bRow = lijst.Row as BoekenDataSet.BoekRow;
+                int nr = boekBoekenlijstBindingSource.Find("id_boek", bRow.id);
+                if (nr != -1)
+                {
+                    boekBoekenlijstBindingSource.Position = nr;
+                    isDubbelProduct = true;
+                    MessageBox.Show("dit product wordt al verhuurd ");
+                }
+                if (!isDubbelProduct)
+                {
+                    DataRowView drv = boekBoekenlijstBindingSource.AddNew() as DataRowView;
+                    BoekenDataSet.BoekBoekenlijstRow row = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
+                    row.klas = klas.Text;
+                    row.id_boek = bRow.id;
+                    row.categorieID = bRow.categorieID;
+                    row.huurprijs = 1;
+                    row.schoolprijs = 1;
+                    row.wordtverhuurd = 1;
+                    row.EndEdit();
+                    boekBoekenlijstBindingSource.EndEdit();
+
+                }
+                welkeklas.Text = klas.Text;
+                klaslijst.Focus();
+
             }
-            var filter = from u in dc.Uitgevers
-                         where u.naam == sValue
-                         from b in dc.Boeks
-                         where b.uitgeverID == u.uitgeverID
-                         select new { b.uitgeverID };
-            string nieuw = "";
-            foreach (var prod in filter)
-            {
-                nieuw = prod.uitgeverID;
-            }
-            this.Text = nieuw;
-            string filterTekst = "uitgeverID like '" + nieuw + "'";
-            BoekenBindingSource.Filter = filterTekst;
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void removefromlist_Click(object sender, EventArgs e)
+        {
+            boekBoekenlijstBindingSource.RemoveCurrent();
+            boekBoekenlijstBindingSource.EndEdit();
         }
 
 
