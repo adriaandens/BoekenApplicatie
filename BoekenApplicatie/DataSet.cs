@@ -81,27 +81,33 @@ namespace BoekenApplicatie
             bool isDubbelProduct = false;
             try
             {
+                //We halen de geselecteerde rij op uit de linkertabel
                 DataRowView slcBoek = boekenlijst.CurrentRow.DataBoundItem as DataRowView;
                 BoekenDataSet.BoekRow bRow = slcBoek.Row as BoekenDataSet.BoekRow;
+
+                //We gaan die zoeken in de rechtertabel
                 int nr = boekBoekenlijstBindingSource1.Find("id_boek", bRow.id);
-                if (nr != -1)
+                if (nr != -1) //Hij zit al in de rechtertabel
                 {
                     boekBoekenlijstBindingSource1.Position = nr;
                     isDubbelProduct = true;
                     MessageBox.Show("Dit product wordt al verhuurd "/* + Environment.NewLine + "Pas eventueel het aantal aan"*/);
                 }
                 if (!isDubbelProduct)
-                {
-                    
+                { //Hij zit niet in de rechtertabel
+                    //We maken een nieuwe rij aan in de BoekBoekenlijst tabel
                     DataRowView drv = boekBoekenlijstBindingSource1.AddNew() as DataRowView;
                     BoekenDataSet.BoekBoekenlijstRow row = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
-                    row.klas = klas.Text;
+                    //We vullen hem op
+                    row.klas = klassenlijst.SelectedItem.ToString();
                     row.id_boek = bRow.id;
                     row.categorieID = bRow.categorieID;
                     row.huurprijs = 15;
                     row.schoolprijs = 13;
                     row.wordtverhuurd = 1;
+                    //We stoppen met editten
                     row.EndEdit();
+                    //We slagen de wijzigingen op. :)
                     boekBoekenlijstBindingSource1.EndEdit();
 
                 }
@@ -120,7 +126,50 @@ namespace BoekenApplicatie
             boekBoekenlijstBindingSource1.EndEdit();
         }
 
+        private void maakNieuweLijst_Click(object sender, EventArgs e)
+        {
+            //Check the text in the textbox: not empty, not the same name as an existing class
 
+            if (klas.Text.Length <= 0)
+            {
+                MessageBox.Show("Vul de naam voor de nieuwe klas in.");
+            }
+            else {
+                int index = boekenlijstBindingSource.Find("klas", klas.Text);
+                if (index != -1)
+                {
+                    MessageBox.Show("Deze klas bestaat al.");
+                }
+                else { 
+                    //Owkee, alles is goed :D
+                    //We maken een nieuwe rij aan in de Boekenlijst tabel
+                    DataRowView drv = boekenlijstBindingSource.AddNew() as DataRowView;
+                    BoekenDataSet.BoekenlijstRow row = drv.Row as BoekenDataSet.BoekenlijstRow;
+                    //We vullen hem op
+                    row.klas = klas.Text;
+                    row.statusID = 1;
+                    row.opmerking = "";
+                    row.laatstewijziging = DateTime.Now;
+                    //We stoppen met editten
+                    row.EndEdit();
+                    //We slagen de wijzigingen op. :)
+                    boekenlijstBindingSource.EndEdit();
 
+                    //Moeten we de boekenlijst kopieren of niet?
+                    index = maak_klas_combobox.SelectedIndex;
+                    if (index != -1) { //Jup we gaan moeten kopiëren
+                        BoekenDataSet.BoekBoekenlijstDataTable dt = boekBoekenlijstTableAdapter.GetData();
+                        
+                    }
+                }
+            }
+
+        }
+
+        //
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

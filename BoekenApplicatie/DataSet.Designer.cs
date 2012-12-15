@@ -29,8 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
+            this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isbnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aankoopprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categorieIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uitgeverIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BoekenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.boekenDataSet = new BoekenApplicatie.BoekenDataSet();
             this.boekBoekenlijstTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.BoekBoekenlijstTableAdapter();
@@ -51,23 +60,25 @@
             this.uitgeverTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.UitgeverTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.boekBoekenlijstBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.klaslijst = new System.Windows.Forms.DataGridView();
-            this.addtolist = new System.Windows.Forms.Button();
-            this.removefromlist = new System.Windows.Forms.Button();
-            this.boekBoekenlijstBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.klas = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.klaslabel = new System.Windows.Forms.Label();
             this.titelboek = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Cat = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.huurprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.schoolprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wordtverhuurdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.boekBoekenlijstBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.addtolist = new System.Windows.Forms.Button();
+            this.removefromlist = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.klas = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.klaslabel = new System.Windows.Forms.Label();
+            this.klassenlijst = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.maak_klas_combobox = new System.Windows.Forms.ComboBox();
+            this.maakNieuweLijst = new System.Windows.Forms.Button();
+            this.boekenlijstBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenDataSet)).BeginInit();
@@ -77,11 +88,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.klaslijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boekenlijstBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // boekenlijst
             // 
             this.boekenlijst.AllowUserToAddRows = false;
+            this.boekenlijst.AllowUserToDeleteRows = false;
             this.boekenlijst.AutoGenerateColumns = false;
             this.boekenlijst.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.boekenlijst.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -89,7 +102,13 @@
             this.boekenlijst.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.titel,
             this.categorieID,
-            this.isbn});
+            this.isbn,
+            this.idDataGridViewTextBoxColumn,
+            this.isbnDataGridViewTextBoxColumn,
+            this.titelDataGridViewTextBoxColumn,
+            this.aankoopprijsDataGridViewTextBoxColumn,
+            this.categorieIDDataGridViewTextBoxColumn,
+            this.uitgeverIDDataGridViewTextBoxColumn});
             this.boekenlijst.Cursor = System.Windows.Forms.Cursors.Default;
             this.boekenlijst.DataSource = this.BoekenBindingSource;
             this.boekenlijst.EnableHeadersVisualStyles = false;
@@ -97,13 +116,78 @@
             this.boekenlijst.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.boekenlijst.Location = new System.Drawing.Point(20, 132);
             this.boekenlijst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.boekenlijst.MultiSelect = false;
             this.boekenlijst.Name = "boekenlijst";
+            this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
+            // 
+            // titel
+            // 
+            this.titel.DataPropertyName = "titel";
+            this.titel.HeaderText = "titel";
+            this.titel.Name = "titel";
+            this.titel.ReadOnly = true;
+            // 
+            // categorieID
+            // 
+            this.categorieID.DataPropertyName = "categorieID";
+            this.categorieID.HeaderText = "categorieID";
+            this.categorieID.Name = "categorieID";
+            this.categorieID.ReadOnly = true;
+            // 
+            // isbn
+            // 
+            this.isbn.DataPropertyName = "isbn";
+            this.isbn.HeaderText = "isbn";
+            this.isbn.Name = "isbn";
+            this.isbn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isbnDataGridViewTextBoxColumn
+            // 
+            this.isbnDataGridViewTextBoxColumn.DataPropertyName = "isbn";
+            this.isbnDataGridViewTextBoxColumn.HeaderText = "isbn";
+            this.isbnDataGridViewTextBoxColumn.Name = "isbnDataGridViewTextBoxColumn";
+            this.isbnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // titelDataGridViewTextBoxColumn
+            // 
+            this.titelDataGridViewTextBoxColumn.DataPropertyName = "titel";
+            this.titelDataGridViewTextBoxColumn.HeaderText = "titel";
+            this.titelDataGridViewTextBoxColumn.Name = "titelDataGridViewTextBoxColumn";
+            this.titelDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // aankoopprijsDataGridViewTextBoxColumn
+            // 
+            this.aankoopprijsDataGridViewTextBoxColumn.DataPropertyName = "aankoopprijs";
+            this.aankoopprijsDataGridViewTextBoxColumn.HeaderText = "aankoopprijs";
+            this.aankoopprijsDataGridViewTextBoxColumn.Name = "aankoopprijsDataGridViewTextBoxColumn";
+            this.aankoopprijsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categorieIDDataGridViewTextBoxColumn
+            // 
+            this.categorieIDDataGridViewTextBoxColumn.DataPropertyName = "categorieID";
+            this.categorieIDDataGridViewTextBoxColumn.HeaderText = "categorieID";
+            this.categorieIDDataGridViewTextBoxColumn.Name = "categorieIDDataGridViewTextBoxColumn";
+            this.categorieIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // uitgeverIDDataGridViewTextBoxColumn
+            // 
+            this.uitgeverIDDataGridViewTextBoxColumn.DataPropertyName = "uitgeverID";
+            this.uitgeverIDDataGridViewTextBoxColumn.HeaderText = "uitgeverID";
+            this.uitgeverIDDataGridViewTextBoxColumn.Name = "uitgeverIDDataGridViewTextBoxColumn";
+            this.uitgeverIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // BoekenBindingSource
             // 
@@ -264,25 +348,6 @@
             this.boekBoekenlijstBindingSource.DataMember = "BoekBoekenlijst";
             this.boekBoekenlijstBindingSource.DataSource = this.boekenDataSet;
             // 
-            // titel
-            // 
-            this.titel.DataPropertyName = "titel";
-            this.titel.HeaderText = "titel";
-            this.titel.Name = "titel";
-            // 
-            // categorieID
-            // 
-            this.categorieID.DataPropertyName = "categorieID";
-            this.categorieID.HeaderText = "categorieID";
-            this.categorieID.Name = "categorieID";
-            this.categorieID.ReadOnly = true;
-            // 
-            // isbn
-            // 
-            this.isbn.DataPropertyName = "isbn";
-            this.isbn.HeaderText = "isbn";
-            this.isbn.Name = "isbn";
-            // 
             // klaslijst
             // 
             this.klaslijst.AllowUserToAddRows = false;
@@ -306,71 +371,6 @@
             this.klaslijst.RowHeadersVisible = false;
             this.klaslijst.Size = new System.Drawing.Size(543, 394);
             this.klaslijst.TabIndex = 11;
-            // 
-            // addtolist
-            // 
-            this.addtolist.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.addtolist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addtolist.Location = new System.Drawing.Point(453, 309);
-            this.addtolist.Name = "addtolist";
-            this.addtolist.Size = new System.Drawing.Size(75, 23);
-            this.addtolist.TabIndex = 12;
-            this.addtolist.Text = ">>";
-            this.addtolist.UseVisualStyleBackColor = false;
-            this.addtolist.Click += new System.EventHandler(this.addtolist_Click);
-            // 
-            // removefromlist
-            // 
-            this.removefromlist.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.removefromlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removefromlist.Location = new System.Drawing.Point(453, 383);
-            this.removefromlist.Name = "removefromlist";
-            this.removefromlist.Size = new System.Drawing.Size(75, 23);
-            this.removefromlist.TabIndex = 13;
-            this.removefromlist.Text = "<<";
-            this.removefromlist.UseVisualStyleBackColor = false;
-            this.removefromlist.Click += new System.EventHandler(this.removefromlist_Click);
-            // 
-            // boekBoekenlijstBindingSource1
-            // 
-            this.boekBoekenlijstBindingSource1.DataMember = "BoekBoekenlijst";
-            this.boekBoekenlijstBindingSource1.DataSource = this.boekenDataSet;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(549, 89);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 14);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "klas";
-            // 
-            // klas
-            // 
-            this.klas.BackColor = System.Drawing.Color.Gainsboro;
-            this.klas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.klas.Location = new System.Drawing.Point(552, 106);
-            this.klas.Name = "klas";
-            this.klas.Size = new System.Drawing.Size(96, 22);
-            this.klas.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(669, 108);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 14);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "lijst voor klas:";
-            // 
-            // klaslabel
-            // 
-            this.klaslabel.AutoSize = true;
-            this.klaslabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.klaslabel.Location = new System.Drawing.Point(763, 108);
-            this.klaslabel.Name = "klaslabel";
-            this.klaslabel.Size = new System.Drawing.Size(0, 14);
-            this.klaslabel.TabIndex = 17;
             // 
             // titelboek
             // 
@@ -422,12 +422,127 @@
             this.wordtverhuurdDataGridViewTextBoxColumn.TrueValue = "1";
             this.wordtverhuurdDataGridViewTextBoxColumn.Width = 75;
             // 
+            // boekBoekenlijstBindingSource1
+            // 
+            this.boekBoekenlijstBindingSource1.DataMember = "BoekBoekenlijst";
+            this.boekBoekenlijstBindingSource1.DataSource = this.boekenDataSet;
+            // 
+            // addtolist
+            // 
+            this.addtolist.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.addtolist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addtolist.Location = new System.Drawing.Point(453, 309);
+            this.addtolist.Name = "addtolist";
+            this.addtolist.Size = new System.Drawing.Size(75, 23);
+            this.addtolist.TabIndex = 12;
+            this.addtolist.Text = ">>";
+            this.addtolist.UseVisualStyleBackColor = false;
+            this.addtolist.Click += new System.EventHandler(this.addtolist_Click);
+            // 
+            // removefromlist
+            // 
+            this.removefromlist.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.removefromlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removefromlist.Location = new System.Drawing.Point(453, 383);
+            this.removefromlist.Name = "removefromlist";
+            this.removefromlist.Size = new System.Drawing.Size(75, 23);
+            this.removefromlist.TabIndex = 13;
+            this.removefromlist.Text = "<<";
+            this.removefromlist.UseVisualStyleBackColor = false;
+            this.removefromlist.Click += new System.EventHandler(this.removefromlist_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(546, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(191, 14);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Maak nieuwe klas met naam:";
+            // 
+            // klas
+            // 
+            this.klas.BackColor = System.Drawing.Color.Gainsboro;
+            this.klas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.klas.Location = new System.Drawing.Point(734, 74);
+            this.klas.MaxLength = 2;
+            this.klas.Name = "klas";
+            this.klas.Size = new System.Drawing.Size(56, 22);
+            this.klas.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(546, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 14);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Klaslijst:";
+            // 
+            // klaslabel
+            // 
+            this.klaslabel.AutoSize = true;
+            this.klaslabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.klaslabel.Location = new System.Drawing.Point(763, 108);
+            this.klaslabel.Name = "klaslabel";
+            this.klaslabel.Size = new System.Drawing.Size(0, 14);
+            this.klaslabel.TabIndex = 17;
+            // 
+            // klassenlijst
+            // 
+            this.klassenlijst.DataSource = this.boekenlijstBindingSource;
+            this.klassenlijst.DisplayMember = "klas";
+            this.klassenlijst.FormattingEnabled = true;
+            this.klassenlijst.Location = new System.Drawing.Point(603, 104);
+            this.klassenlijst.Name = "klassenlijst";
+            this.klassenlijst.Size = new System.Drawing.Size(121, 22);
+            this.klassenlijst.TabIndex = 18;
+            this.klassenlijst.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(796, 76);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 14);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "en gebaseerd op:";
+            // 
+            // maak_klas_combobox
+            // 
+            this.maak_klas_combobox.DataSource = this.boekenlijstBindingSource;
+            this.maak_klas_combobox.DisplayMember = "klas";
+            this.maak_klas_combobox.FormattingEnabled = true;
+            this.maak_klas_combobox.Location = new System.Drawing.Point(922, 73);
+            this.maak_klas_combobox.Name = "maak_klas_combobox";
+            this.maak_klas_combobox.Size = new System.Drawing.Size(63, 22);
+            this.maak_klas_combobox.TabIndex = 20;
+            // 
+            // maakNieuweLijst
+            // 
+            this.maakNieuweLijst.Location = new System.Drawing.Point(991, 73);
+            this.maakNieuweLijst.Name = "maakNieuweLijst";
+            this.maakNieuweLijst.Size = new System.Drawing.Size(75, 23);
+            this.maakNieuweLijst.TabIndex = 21;
+            this.maakNieuweLijst.Text = "Maak!";
+            this.maakNieuweLijst.UseVisualStyleBackColor = true;
+            this.maakNieuweLijst.Click += new System.EventHandler(this.maakNieuweLijst_Click);
+            // 
+            // boekenlijstBindingSource
+            // 
+            this.boekenlijstBindingSource.DataMember = "Boekenlijst";
+            this.boekenlijstBindingSource.DataSource = this.boekenDataSet;
+            // 
             // DataSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1096, 538);
+            this.Controls.Add(this.maakNieuweLijst);
+            this.Controls.Add(this.maak_klas_combobox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.klassenlijst);
             this.Controls.Add(this.klaslabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.klas);
@@ -460,6 +575,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.klaslijst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boekenlijstBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,6 +621,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isbnDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aankoopprijsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categorieIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uitgeverIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox klassenlijst;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox maak_klas_combobox;
+        private System.Windows.Forms.Button maakNieuweLijst;
+        private System.Windows.Forms.BindingSource boekenlijstBindingSource;
 
     }
 }
