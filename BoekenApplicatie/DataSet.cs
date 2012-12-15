@@ -41,41 +41,39 @@ namespace BoekenApplicatie
         private void titelzoeken_TextChanged(object sender, EventArgs e)
         {
             string filterTekst = "titel like '%" + titelzoeken.Text.Trim() + "%'";
-            boekBindingSource.Filter = filterTekst;
+            BoekenBindingSource.Filter = filterTekst;
         }
 
         private void isbnzoeken_TextChanged(object sender, EventArgs e)
         {
             string filterTekst = "isbn like '%" + isbnzoeken.Text.Trim() + "%'";
-            boekBindingSource.Filter = filterTekst;
+            BoekenBindingSource.Filter = filterTekst;
         }
 
         private void Cat_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Text = Cat_Search.SelectedValue.ToString();
-            string filterTekst = "categorieID like '" + Cat_Search.SelectedValue.ToString() + "'";
-            boekBindingSource.Filter = filterTekst;
+            string filterTekst = "categorieID like '" + Cat_Search.SelectedValue.ToString().Trim()+ "'";
+            BoekenBindingSource.Filter = filterTekst;
         }
 
         private void all_Click(object sender, EventArgs e)
         {
             titelzoeken.Text = "";
             isbnzoeken.Text = "";
-            boekBindingSource.RemoveFilter();
+            BoekenBindingSource.RemoveFilter();
 
         }
 
         private void titelzoeken_TextChanged_1(object sender, EventArgs e)
         {
             string filterTekst = "titel like '%" + titelzoeken.Text.Trim() + "%'";
-            boekBindingSource.Filter = filterTekst;
+            BoekenBindingSource.Filter = filterTekst;
         }
 
         private void Uit_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            string filterTekst = "uitgeverID like '" + Uit_Search.SelectedValue.ToString() + "'";
-            boekBindingSource.Filter = filterTekst;
+            string filterTekst = "uitgeverID like '" + Uit_Search.SelectedValue.ToString().Trim() + "'";
+            BoekenBindingSource.Filter = filterTekst;
         }
 
         private void addtolist_Click(object sender, EventArgs e)
@@ -83,31 +81,34 @@ namespace BoekenApplicatie
             bool isDubbelProduct = false;
             try
             {
-                DataRowView lijst = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
-                BoekenDataSet.BoekRow bRow = lijst.Row as BoekenDataSet.BoekRow;
-                int nr = boekBoekenlijstBindingSource.Find("id_boek", bRow.id);
+                DataRowView slcBoek = boekenlijst.CurrentRow.DataBoundItem as DataRowView;
+                BoekenDataSet.BoekRow bRow = slcBoek.Row as BoekenDataSet.BoekRow;
+                int nr = boekBoekenlijstBindingSource1.Find("id_boek", bRow.id);
                 if (nr != -1)
                 {
-                    boekBoekenlijstBindingSource.Position = nr;
+                    boekBoekenlijstBindingSource1.Position = nr;
                     isDubbelProduct = true;
-                    MessageBox.Show("dit product wordt al verhuurd ");
+                    MessageBox.Show("Dit product wordt al verhuurd "/* + Environment.NewLine + "Pas eventueel het aantal aan"*/);
                 }
                 if (!isDubbelProduct)
                 {
-                    DataRowView drv = boekBoekenlijstBindingSource.AddNew() as DataRowView;
+                    
+                    DataRowView drv = boekBoekenlijstBindingSource1.AddNew() as DataRowView;
                     BoekenDataSet.BoekBoekenlijstRow row = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
                     row.klas = klas.Text;
                     row.id_boek = bRow.id;
                     row.categorieID = bRow.categorieID;
-                    row.huurprijs = 1;
-                    row.schoolprijs = 1;
+                    row.huurprijs = 15;
+                    row.schoolprijs = 13;
                     row.wordtverhuurd = 1;
                     row.EndEdit();
-                    boekBoekenlijstBindingSource.EndEdit();
+                    boekBoekenlijstBindingSource1.EndEdit();
 
                 }
-                welkeklas.Text = klas.Text;
-                klaslijst.Focus();
+                klaslabel.Text = klas.Text;
+                /*DataGridViewCell cel = dgvOrderDetail["dgvQuantity", dgvOrderDetail.CurrentRow.Index];
+                dgvOrderDetail.CurrentCell = cel;
+                dgvOrderDetail.Focus();*/
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -115,8 +116,8 @@ namespace BoekenApplicatie
 
         private void removefromlist_Click(object sender, EventArgs e)
         {
-            boekBoekenlijstBindingSource.RemoveCurrent();
-            boekBoekenlijstBindingSource.EndEdit();
+            boekBoekenlijstBindingSource1.RemoveCurrent();
+            boekBoekenlijstBindingSource1.EndEdit();
         }
 
 
