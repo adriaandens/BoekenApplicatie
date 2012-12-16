@@ -12,6 +12,10 @@ namespace BoekenApplicatie
     public partial class DataSet : Form
     {
         private BoekenDataContext dc = new BoekenDataContext();
+        private string naam_van_klas; 
+
+
+
         public DataSet()
         {
             InitializeComponent();
@@ -25,6 +29,8 @@ namespace BoekenApplicatie
 
         private void DataSet_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'boekenDataSet.Status' table. You can move, or remove it, as needed.
+            this.statusTableAdapter.Fill(this.boekenDataSet.Status);
             // TODO: This line of code loads data into the 'boekenDataSet.Uitgever' table. You can move, or remove it, as needed.
             this.uitgeverTableAdapter.Fill(this.boekenDataSet.Uitgever);
             // TODO: This line of code loads data into the 'boekenDataSet.Boek' table. You can move, or remove it, as needed.
@@ -52,7 +58,7 @@ namespace BoekenApplicatie
 
         private void Cat_Search_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string filterTekst = "categorieID like '" + Cat_Search.SelectedValue.ToString().Trim()+ "'";
+            string filterTekst = "categorieID like '" + Cat_Search.SelectedValue.ToString().Trim() + "'";
             BoekenBindingSource.Filter = filterTekst;
         }
 
@@ -78,7 +84,8 @@ namespace BoekenApplicatie
 
         private void addtolist_Click(object sender, EventArgs e)
         {
-            if (klassenlijst.SelectedIndex == -1) {
+            if (klassenlijst.SelectedIndex == -1)
+            {
                 MessageBox.Show("Je kan alleen boeken toevoegen aan een boekenlijst met een naam");
                 return;
             }
@@ -103,26 +110,16 @@ namespace BoekenApplicatie
                     DataRowView drv = boekBoekenlijstBindingSource1.AddNew() as DataRowView;
                     BoekenDataSet.BoekBoekenlijstRow row = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
                     //We vullen hem op
-                    row.klas = klassenlijst.Text; //Kan maximaal 2 chars lang zijn...
+                    row.klas = klassenlijst.Text;
                     row.id_boek = bRow.id;
                     row.categorieID = bRow.categorieID;
-                    row.huurprijs = 15;
-                    row.schoolprijs = 13;
+                    row.huurprijs = 0;
+                    row.schoolprijs = bRow.aankoopprijs;
                     row.wordtverhuurd = 1;
                     //We stoppen met editten
                     row.EndEdit();
                     //We slagen de wijzigingen op. :)
                     boekBoekenlijstBindingSource1.EndEdit();
-
-                    //Adriaan dacht dat bovenstaande niet werkte, maar dat werkt dus wel
-                    /*BoekenDataSet.BoekBoekenlijstRow rij = boekenDataSet.BoekBoekenlijst.NewBoekBoekenlijstRow();
-                    rij.klas = klassenlijst.Text;
-                    rij.id_boek = bRow.id;
-                    rij.huurprijs = (decimal) 0;
-                    rij.schoolprijs = (decimal) 0;
-                    rij.wordtverhuurd = 1;
-                    rij.categorieID = bRow.categorieID;
-                    boekenDataSet.BoekBoekenlijst.Rows.Add(rij);*/
 
                 }
                 /*DataGridViewCell cel = dgvOrderDetail["dgvQuantity", dgvOrderDetail.CurrentRow.Index];
@@ -146,13 +143,15 @@ namespace BoekenApplicatie
             {
                 MessageBox.Show("Vul de naam voor de nieuwe klas in.");
             }
-            else {
+            else
+            {
                 int index = boekenlijstBindingSource.Find("klas", klas.Text);
                 if (index != -1)
                 {
                     MessageBox.Show("Deze klas bestaat al.");
                 }
-                else { 
+                else
+                {
                     //Owkee, alles is goed :D
                     //We maken een nieuwe rij aan in de Boekenlijst tabel
                     string waarde_combobox = maak_klas_combobox.Text;
@@ -160,10 +159,10 @@ namespace BoekenApplicatie
                     DataRowView drv = boekenlijstBindingSource.AddNew() as DataRowView;
                     BoekenDataSet.BoekenlijstRow row = drv.Row as BoekenDataSet.BoekenlijstRow;
                     //We vullen hem op
-                    
+
                     row.klas = klas.Text;
                     row.statusID = 1;
-                    row.opmerking = "";
+                    row.opmerking = "Vul hier je opmerking in";
                     row.laatstewijziging = DateTime.Now;
                     //We stoppen met editten
                     row.EndEdit();
@@ -175,10 +174,9 @@ namespace BoekenApplicatie
                     if (klas.Text != waarde_combobox && waarde_combobox != "")
                     { //Jup we gaan moeten kopiëren
                         MessageBox.Show("Jup we gaan moete kopieren");
-                        BoekenDataSet.BoekBoekenlijstDataTable dt = boekBoekenlijstTableAdapter.GetData();
-                        //boekenDataSet.BoekBoekenlijst.Rows
                         List<BoekenDataSet.BoekBoekenlijstRow> lijst = new List<BoekenDataSet.BoekBoekenlijstRow>();
-                        foreach (DataRow dr in boekenDataSet.BoekBoekenlijst.Rows) {
+                        foreach (DataRow dr in boekenDataSet.BoekBoekenlijst.Rows)
+                        {
                             MessageBox.Show("De klas in deze rij is " + dr["klas"].ToString());
                             if (dr["klas"].ToString() == waarde_combobox)
                             {
@@ -187,20 +185,21 @@ namespace BoekenApplicatie
                                 //We maken een nieuwe rij aan in de BoekBoekenlijst tabel
                                 BoekenDataSet.BoekBoekenlijstRow rij = boekenDataSet.BoekBoekenlijst.NewBoekBoekenlijstRow();
                                 rij.klas = klas.Text;
-                                rij.id_boek = (int) dr["id_boek"];
-                                rij.huurprijs = (decimal) dr["huurprijs"];
-                                rij.schoolprijs = (decimal) dr["schoolprijs"];
-                                rij.wordtverhuurd = (byte) dr["wordtverhuurd"];
+                                rij.id_boek = (int)dr["id_boek"];
+                                rij.huurprijs = (decimal)dr["huurprijs"];
+                                rij.schoolprijs = (decimal)dr["schoolprijs"];
+                                rij.wordtverhuurd = (byte)dr["wordtverhuurd"];
                                 rij.categorieID = dr["categorieID"].ToString();
                                 lijst.Add(rij); //omdat we de collectie niet kunnen veranderen terwijl we erdoor aan het lussen zijn...
                                 //boekenDataSet.BoekBoekenlijst.Rows.Add(rij);
                             }
                         }
-                        foreach (BoekenDataSet.BoekBoekenlijstRow rij in lijst) {
+                        foreach (BoekenDataSet.BoekBoekenlijstRow rij in lijst)
+                        {
                             boekenDataSet.BoekBoekenlijst.Rows.Add(rij);
                         }
-                        klassenlijst_SelectedIndexChanged(null, null);
                     }
+                    klassenlijst_SelectedIndexChanged(null, null);
                 }
             }
 
@@ -208,10 +207,73 @@ namespace BoekenApplicatie
 
         private void klassenlijst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (klassenlijst.SelectedIndex != -1) {
+            if (klassenlijst.SelectedIndex != -1 && klassenlijst.Text.Length != 0)
+            {
+                MessageBox.Show("We gaan nu de rechtse tabel aanpassen, nieuwe klas: " + klassenlijst.Text);
+                //naam_van_klas = klassenlijst.Text;
                 boekBoekenlijstBindingSource1.RemoveFilter();
                 string filterTekst = "klas = '" + klassenlijst.Text + "'";
                 boekBoekenlijstBindingSource1.Filter = filterTekst;
+                //update opmerking textbox en status
+                MessageBox.Show("We gaan nu de opmerking aanpassen naar die van klas: " + klassenlijst.Text);
+                BoekenDataSet.BoekenlijstRow rij = boekenDataSet.Boekenlijst.FindByklas(klassenlijst.Text);
+                if (rij != null)
+                {
+                    MessageBox.Show("Klas rij: " + rij.klas);
+                    MessageBox.Show("Opmerking klas: " + rij.opmerking);
+                    opmerking.Text = rij.opmerking;
+                    //Status aanpassen
+                    status_boekenlijst.SelectedIndex = rij.statusID - 1;
+                }
+                else
+                {
+                    opmerking.Text = "";
+                }
+
+                //We moeten ook het totaal aantal boeken laten zien + de prijs
+                int aantalboeken = 0;
+                decimal prijs = 0;
+                foreach (DataRowView rijtje in boekBoekenlijstBindingSource1) {
+                    BoekenDataSet.BoekBoekenlijstRow goed_rijtje = rijtje.Row as BoekenDataSet.BoekBoekenlijstRow;
+                    aantalboeken++;
+                    prijs += goed_rijtje.schoolprijs;
+                }
+                info_boekenlijst.Text = "Lijst voor " + klassenlijst.Text + " - Aantal boeken: " + aantalboeken + " - Totaal: " + prijs + "€";
+            }
+        }
+
+        private void pas_info_boekenlijst_aan() { 
+            
+        }
+
+        private void annuleer_wijzigingen_Click(object sender, EventArgs e)
+        {
+            string klasnaam = klassenlijst.Text; //Klas die getoond wordt
+            //We gaan door de boeken loopen in boekboekenlijst
+            //Voor elk boek, nemen we de ID en zoeken we de ID in de boektabel.
+            //We passen het boek in boekboekenlijst aan.
+
+        }
+
+        private void save_opmerking_Click(object sender, EventArgs e)
+        {
+            //Edit column in dataset: http://msdn.microsoft.com/en-us/library/tat996zc(v=vs.80).aspx
+            string klas = klassenlijst.Text;
+            if (klas.Length > 0)
+            {
+                BoekenDataSet.BoekenlijstRow rij = boekenDataSet.Boekenlijst.FindByklas(klas);
+                rij.opmerking = opmerking.Text;
+            }
+
+        }
+
+        private void status_boekenlijst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string klas = klassenlijst.Text;
+            if (klas.Length > 0)
+            {
+                BoekenDataSet.BoekenlijstRow rij = boekenDataSet.Boekenlijst.FindByklas(klas);
+                rij.statusID = status_boekenlijst.SelectedIndex + 1;
             }
         }
     }
