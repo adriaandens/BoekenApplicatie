@@ -254,19 +254,21 @@ namespace BoekenApplicatie
             string klasnaam = naam_van_klas; //Klas die getoond wordt
             //We gaan door de boeken loopen in boekboekenlijst
             for (int i = 0; i < boekBoekenlijstBindingSource1.List.Count; i++) {
-                DataRowView drv = boekBoekenlijstBindingSource1[0] as DataRowView;
+                DataRowView drv = boekBoekenlijstBindingSource1[i] as DataRowView;
                 BoekenDataSet.BoekBoekenlijstRow rij = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
                 //Voor elk boek, nemen we de ID en zoeken we de ID in de boektabel.
-                
-                int id = BoekenBindingSource.Find("id", rij.id_boek);
-                MessageBox.Show("Id rechterkolom van boek: " + rij.id_boek + " - Index: " + id);
-                drv = BoekenBindingSource[id] as DataRowView;
-                BoekenDataSet.BoekRow rij_origineel = drv.Row as BoekenDataSet.BoekRow;
+                BoekenDataSet.BoekDataTable dt = boekTableAdapter.GetData();
+                BoekenDataSet.BoekRow rij_origineel = dt.FindByid(rij.id_boek);
+                //int id = BoekenBindingSource.Find("id", rij.id_boek);
+                //MessageBox.Show("Id rechterkolom van boek: " + rij.id_boek + " - Index: " + id);
+                //drv = BoekenBindingSource[id] as DataRowView;
+                //BoekenDataSet.BoekRow rij_origineel = drv.Row as BoekenDataSet.BoekRow;
 
                 //Nu passen we de velden aan van "rij" om terug het origineel te hebben.
                 rij.schoolprijs = rij_origineel.aankoopprijs;
                 rij.categorieID = rij_origineel.categorieID;
             }
+            pas_info_boekenlijst_aan();
         }
 
         private void save_opmerking_Click(object sender, EventArgs e)
