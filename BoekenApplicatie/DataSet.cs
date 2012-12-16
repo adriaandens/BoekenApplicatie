@@ -78,6 +78,10 @@ namespace BoekenApplicatie
 
         private void addtolist_Click(object sender, EventArgs e)
         {
+            if (klassenlijst.SelectedIndex == -1) {
+                MessageBox.Show("Je kan alleen boeken toevoegen aan een boekenlijst met een naam");
+                return;
+            }
             bool isDubbelProduct = false;
             try
             {
@@ -99,7 +103,7 @@ namespace BoekenApplicatie
                     DataRowView drv = boekBoekenlijstBindingSource1.AddNew() as DataRowView;
                     BoekenDataSet.BoekBoekenlijstRow row = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
                     //We vullen hem op
-                    row.klas = klassenlijst.SelectedItem.ToString();
+                    row.klas = klassenlijst.Text; //Kan maximaal 2 chars lang zijn...
                     row.id_boek = bRow.id;
                     row.categorieID = bRow.categorieID;
                     row.huurprijs = 15;
@@ -110,8 +114,17 @@ namespace BoekenApplicatie
                     //We slagen de wijzigingen op. :)
                     boekBoekenlijstBindingSource1.EndEdit();
 
+                    //Adriaan dacht dat bovenstaande niet werkte, maar dat werkt dus wel
+                    /*BoekenDataSet.BoekBoekenlijstRow rij = boekenDataSet.BoekBoekenlijst.NewBoekBoekenlijstRow();
+                    rij.klas = klassenlijst.Text;
+                    rij.id_boek = bRow.id;
+                    rij.huurprijs = (decimal) 0;
+                    rij.schoolprijs = (decimal) 0;
+                    rij.wordtverhuurd = 1;
+                    rij.categorieID = bRow.categorieID;
+                    boekenDataSet.BoekBoekenlijst.Rows.Add(rij);*/
+
                 }
-                klaslabel.Text = klas.Text;
                 /*DataGridViewCell cel = dgvOrderDetail["dgvQuantity", dgvOrderDetail.CurrentRow.Index];
                 dgvOrderDetail.CurrentCell = cel;
                 dgvOrderDetail.Focus();*/
@@ -129,7 +142,6 @@ namespace BoekenApplicatie
         private void maakNieuweLijst_Click(object sender, EventArgs e)
         {
             //Check the text in the textbox: not empty, not the same name as an existing class
-
             if (klas.Text.Length <= 0)
             {
                 MessageBox.Show("Vul de naam voor de nieuwe klas in.");
@@ -143,9 +155,12 @@ namespace BoekenApplicatie
                 else { 
                     //Owkee, alles is goed :D
                     //We maken een nieuwe rij aan in de Boekenlijst tabel
+                    string waarde_combobox = maak_klas_combobox.Text;
+                    MessageBox.Show("Waarde combobox: " + waarde_combobox + " (" + waarde_combobox.Length + ")");
                     DataRowView drv = boekenlijstBindingSource.AddNew() as DataRowView;
                     BoekenDataSet.BoekenlijstRow row = drv.Row as BoekenDataSet.BoekenlijstRow;
                     //We vullen hem op
+                    
                     row.klas = klas.Text;
                     row.statusID = 1;
                     row.opmerking = "";
@@ -155,21 +170,49 @@ namespace BoekenApplicatie
                     //We slagen de wijzigingen op. :)
                     boekenlijstBindingSource.EndEdit();
 
+
                     //Moeten we de boekenlijst kopieren of niet?
-                    index = maak_klas_combobox.SelectedIndex;
-                    if (index != -1) { //Jup we gaan moeten kopiëren
+                    if (klas.Text != waarde_combobox && waarde_combobox != "")
+                    { //Jup we gaan moeten kopiëren
+                        MessageBox.Show("Jup we gaan moete kopieren");
                         BoekenDataSet.BoekBoekenlijstDataTable dt = boekBoekenlijstTableAdapter.GetData();
-                        
+                        //boekenDataSet.BoekBoekenlijst.Rows
+                        List<BoekenDataSet.BoekBoekenlijstRow> lijst = new List<BoekenDataSet.BoekBoekenlijstRow>();
+                        foreach (DataRow dr in boekenDataSet.BoekBoekenlijst.Rows) {
+                            MessageBox.Show("De klas in deze rij is " + dr["klas"].ToString());
+                            if (dr["klas"].ToString() == waarde_combobox)
+                            {
+                                MessageBox.Show("Deze is dus legit");
+                                //Deze moeten we kopiëren
+                                //We maken een nieuwe rij aan in de BoekBoekenlijst tabel
+                                BoekenDataSet.BoekBoekenlijstRow rij = boekenDataSet.BoekBoekenlijst.NewBoekBoekenlijstRow();
+                                rij.klas = klas.Text;
+                                rij.id_boek = (int) dr["id_boek"];
+                                rij.huurprijs = (decimal) dr["huurprijs"];
+                                rij.schoolprijs = (decimal) dr["schoolprijs"];
+                                rij.wordtverhuurd = (byte) dr["wordtverhuurd"];
+                                rij.categorieID = dr["categorieID"].ToString();
+                                lijst.Add(rij); //omdat we de collectie niet kunnen veranderen terwijl we erdoor aan het lussen zijn...
+                                //boekenDataSet.BoekBoekenlijst.Rows.Add(rij);
+                            }
+                        }
+                        foreach (BoekenDataSet.BoekBoekenlijstRow rij in lijst) {
+                            boekenDataSet.BoekBoekenlijst.Rows.Add(rij);
+                        }
+                        klassenlijst_SelectedIndexChanged(null, null);
                     }
                 }
             }
 
         }
 
-        //
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void klassenlijst_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (klassenlijst.SelectedIndex != -1) {
+                boekBoekenlijstBindingSource1.RemoveFilter();
+                string filterTekst = "klas = '" + klassenlijst.Text + "'";
+                boekBoekenlijstBindingSource1.Filter = filterTekst;
+            }
         }
     }
 }

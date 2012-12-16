@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
             this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,24 +61,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.boekBoekenlijstBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.klaslijst = new System.Windows.Forms.DataGridView();
-            this.titelboek = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Cat = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.huurprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.schoolprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wordtverhuurdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.boekBoekenlijstBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.addtolist = new System.Windows.Forms.Button();
             this.removefromlist = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.klas = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.klaslabel = new System.Windows.Forms.Label();
             this.klassenlijst = new System.Windows.Forms.ComboBox();
+            this.boekenlijstBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.maak_klas_combobox = new System.Windows.Forms.ComboBox();
             this.maakNieuweLijst = new System.Windows.Forms.Button();
-            this.boekenlijstBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.titelboek = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Cat = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.huurprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.schoolprijsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wordtverhuurdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenDataSet)).BeginInit();
@@ -121,8 +120,8 @@
             this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
             // 
@@ -372,56 +371,6 @@
             this.klaslijst.Size = new System.Drawing.Size(543, 394);
             this.klaslijst.TabIndex = 11;
             // 
-            // titelboek
-            // 
-            this.titelboek.DataPropertyName = "id_boek";
-            this.titelboek.DataSource = this.BoekenBindingSource;
-            this.titelboek.DisplayMember = "titel";
-            this.titelboek.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.titelboek.HeaderText = "titel";
-            this.titelboek.Name = "titelboek";
-            this.titelboek.ValueMember = "id";
-            // 
-            // Cat
-            // 
-            this.Cat.DataPropertyName = "categorieID";
-            this.Cat.DataSource = this.categorieBindingSource;
-            this.Cat.DisplayMember = "naam";
-            this.Cat.HeaderText = "categorie";
-            this.Cat.Name = "Cat";
-            this.Cat.ValueMember = "categorieID";
-            // 
-            // huurprijsDataGridViewTextBoxColumn
-            // 
-            this.huurprijsDataGridViewTextBoxColumn.DataPropertyName = "huurprijs";
-            this.huurprijsDataGridViewTextBoxColumn.HeaderText = "huurprijs";
-            this.huurprijsDataGridViewTextBoxColumn.Name = "huurprijsDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "klas";
-            this.dataGridViewTextBoxColumn1.HeaderText = "klas";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // schoolprijsDataGridViewTextBoxColumn
-            // 
-            this.schoolprijsDataGridViewTextBoxColumn.DataPropertyName = "schoolprijs";
-            this.schoolprijsDataGridViewTextBoxColumn.HeaderText = "schoolprijs";
-            this.schoolprijsDataGridViewTextBoxColumn.Name = "schoolprijsDataGridViewTextBoxColumn";
-            // 
-            // wordtverhuurdDataGridViewTextBoxColumn
-            // 
-            this.wordtverhuurdDataGridViewTextBoxColumn.DataPropertyName = "wordtverhuurd";
-            this.wordtverhuurdDataGridViewTextBoxColumn.FalseValue = "0";
-            this.wordtverhuurdDataGridViewTextBoxColumn.HeaderText = "verhuurd";
-            this.wordtverhuurdDataGridViewTextBoxColumn.Name = "wordtverhuurdDataGridViewTextBoxColumn";
-            this.wordtverhuurdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.wordtverhuurdDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.wordtverhuurdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.wordtverhuurdDataGridViewTextBoxColumn.TrueValue = "1";
-            this.wordtverhuurdDataGridViewTextBoxColumn.Width = 75;
-            // 
             // boekBoekenlijstBindingSource1
             // 
             this.boekBoekenlijstBindingSource1.DataMember = "BoekBoekenlijst";
@@ -479,15 +428,6 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Klaslijst:";
             // 
-            // klaslabel
-            // 
-            this.klaslabel.AutoSize = true;
-            this.klaslabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.klaslabel.Location = new System.Drawing.Point(763, 108);
-            this.klaslabel.Name = "klaslabel";
-            this.klaslabel.Size = new System.Drawing.Size(0, 14);
-            this.klaslabel.TabIndex = 17;
-            // 
             // klassenlijst
             // 
             this.klassenlijst.DataSource = this.boekenlijstBindingSource;
@@ -497,7 +437,12 @@
             this.klassenlijst.Name = "klassenlijst";
             this.klassenlijst.Size = new System.Drawing.Size(121, 22);
             this.klassenlijst.TabIndex = 18;
-            this.klassenlijst.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.klassenlijst.SelectedIndexChanged += new System.EventHandler(this.klassenlijst_SelectedIndexChanged);
+            // 
+            // boekenlijstBindingSource
+            // 
+            this.boekenlijstBindingSource.DataMember = "Boekenlijst";
+            this.boekenlijstBindingSource.DataSource = this.boekenDataSet;
             // 
             // label6
             // 
@@ -528,10 +473,54 @@
             this.maakNieuweLijst.UseVisualStyleBackColor = true;
             this.maakNieuweLijst.Click += new System.EventHandler(this.maakNieuweLijst_Click);
             // 
-            // boekenlijstBindingSource
+            // titelboek
             // 
-            this.boekenlijstBindingSource.DataMember = "Boekenlijst";
-            this.boekenlijstBindingSource.DataSource = this.boekenDataSet;
+            this.titelboek.DataPropertyName = "id_boek";
+            this.titelboek.DataSource = this.BoekenBindingSource;
+            this.titelboek.DisplayMember = "titel";
+            this.titelboek.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.titelboek.HeaderText = "titel";
+            this.titelboek.Name = "titelboek";
+            this.titelboek.ValueMember = "id";
+            // 
+            // Cat
+            // 
+            this.Cat.DataPropertyName = "categorieID";
+            this.Cat.DataSource = this.categorieBindingSource;
+            this.Cat.DisplayMember = "naam";
+            this.Cat.HeaderText = "categorie";
+            this.Cat.Name = "Cat";
+            this.Cat.ValueMember = "categorieID";
+            // 
+            // huurprijsDataGridViewTextBoxColumn
+            // 
+            this.huurprijsDataGridViewTextBoxColumn.DataPropertyName = "huurprijs";
+            this.huurprijsDataGridViewTextBoxColumn.HeaderText = "huurprijs";
+            this.huurprijsDataGridViewTextBoxColumn.Name = "huurprijsDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "klas";
+            this.dataGridViewTextBoxColumn1.HeaderText = "klas";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // schoolprijsDataGridViewTextBoxColumn
+            // 
+            this.schoolprijsDataGridViewTextBoxColumn.DataPropertyName = "schoolprijs";
+            this.schoolprijsDataGridViewTextBoxColumn.HeaderText = "schoolprijs";
+            this.schoolprijsDataGridViewTextBoxColumn.Name = "schoolprijsDataGridViewTextBoxColumn";
+            // 
+            // wordtverhuurdDataGridViewTextBoxColumn
+            // 
+            this.wordtverhuurdDataGridViewTextBoxColumn.DataPropertyName = "wordtverhuurd";
+            this.wordtverhuurdDataGridViewTextBoxColumn.FalseValue = "0";
+            this.wordtverhuurdDataGridViewTextBoxColumn.HeaderText = "verhuurd";
+            this.wordtverhuurdDataGridViewTextBoxColumn.Name = "wordtverhuurdDataGridViewTextBoxColumn";
+            this.wordtverhuurdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.wordtverhuurdDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.wordtverhuurdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.wordtverhuurdDataGridViewTextBoxColumn.TrueValue = "1";
+            this.wordtverhuurdDataGridViewTextBoxColumn.Width = 75;
             // 
             // DataSet
             // 
@@ -543,7 +532,6 @@
             this.Controls.Add(this.maak_klas_combobox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.klassenlijst);
-            this.Controls.Add(this.klaslabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.klas);
             this.Controls.Add(this.label4);
@@ -614,13 +602,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox klas;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label klaslabel;
-        private System.Windows.Forms.DataGridViewComboBoxColumn titelboek;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Cat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn huurprijsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isbnDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titelDataGridViewTextBoxColumn;
@@ -632,6 +613,12 @@
         private System.Windows.Forms.ComboBox maak_klas_combobox;
         private System.Windows.Forms.Button maakNieuweLijst;
         private System.Windows.Forms.BindingSource boekenlijstBindingSource;
+        private System.Windows.Forms.DataGridViewComboBoxColumn titelboek;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Cat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn huurprijsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
 
     }
 }
