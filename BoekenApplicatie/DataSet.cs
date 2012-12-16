@@ -136,6 +136,7 @@ namespace BoekenApplicatie
         {
             boekBoekenlijstBindingSource1.RemoveCurrent();
             boekBoekenlijstBindingSource1.EndEdit();
+            pas_info_boekenlijst_aan();
         }
 
         private void maakNieuweLijst_Click(object sender, EventArgs e)

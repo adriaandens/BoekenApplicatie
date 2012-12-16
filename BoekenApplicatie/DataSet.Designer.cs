@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
             this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +81,7 @@
             this.info_boekenlijst = new System.Windows.Forms.Label();
             this.statusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.StatusTableAdapter();
+            this.categorieRechtseGridBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.titelboek = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.id_boek = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cat = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -99,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijstBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categorieRechtseGridBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // boekenlijst
@@ -131,8 +133,8 @@
             this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
             // 
@@ -563,6 +565,11 @@
             // 
             this.statusTableAdapter.ClearBeforeFill = true;
             // 
+            // categorieRechtseGridBindingSource
+            // 
+            this.categorieRechtseGridBindingSource.DataMember = "Categorie";
+            this.categorieRechtseGridBindingSource.DataSource = this.boekenDataSet;
+            // 
             // titelboek
             // 
             this.titelboek.DataPropertyName = "id_boek";
@@ -582,7 +589,7 @@
             // Cat
             // 
             this.Cat.DataPropertyName = "categorieID";
-            this.Cat.DataSource = this.categorieBindingSource;
+            this.Cat.DataSource = this.categorieRechtseGridBindingSource;
             this.Cat.DisplayMember = "naam";
             this.Cat.HeaderText = "categorie";
             this.Cat.Name = "Cat";
@@ -668,6 +675,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.boekBoekenlijstBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijstBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categorieRechtseGridBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,6 +737,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn titelboek;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_boek;
         private System.Windows.Forms.DataGridViewComboBoxColumn Cat;
+        private System.Windows.Forms.BindingSource categorieRechtseGridBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn huurprijsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
