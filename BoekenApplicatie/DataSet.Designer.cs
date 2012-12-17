@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
             this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,6 +89,7 @@
             this.save_opmerking = new System.Windows.Forms.Button();
             this.info_boekenlijst = new System.Windows.Forms.Label();
             this.statusTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.StatusTableAdapter();
+            this.btnLinq = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenDataSet)).BeginInit();
@@ -133,8 +134,8 @@
             this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
             // 
@@ -631,12 +632,23 @@
             // 
             this.statusTableAdapter.ClearBeforeFill = true;
             // 
+            // btnLinq
+            // 
+            this.btnLinq.Location = new System.Drawing.Point(20, 589);
+            this.btnLinq.Name = "btnLinq";
+            this.btnLinq.Size = new System.Drawing.Size(75, 23);
+            this.btnLinq.TabIndex = 29;
+            this.btnLinq.Text = "Linq";
+            this.btnLinq.UseVisualStyleBackColor = true;
+            this.btnLinq.Click += new System.EventHandler(this.btnLinq_Click);
+            // 
             // DataSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1199, 710);
+            this.Controls.Add(this.btnLinq);
             this.Controls.Add(this.info_boekenlijst);
             this.Controls.Add(this.save_opmerking);
             this.Controls.Add(this.label8);
@@ -748,6 +760,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnLinq;
 
     }
 }

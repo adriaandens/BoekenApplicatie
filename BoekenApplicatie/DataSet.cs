@@ -298,5 +298,11 @@ namespace BoekenApplicatie
         {
             pas_info_boekenlijst_aan();
         }
+
+        private void btnLinq_Click(object sender, EventArgs e)
+        {
+            Form f = new Linq();
+            f.ShowDialog();
+        }
     }
 }

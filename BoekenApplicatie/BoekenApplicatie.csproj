@@ -88,6 +88,12 @@
     <Compile Include="DataSet.Designer.cs">
       <DependentUpon>DataSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq.Designer.cs">
+      <DependentUpon>Linq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Boeken.dbml.layout">
@@ -95,6 +101,9 @@
     </None>
     <EmbeddedResource Include="DataSet.resx">
       <DependentUpon>DataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq.resx">
+      <DependentUpon>Linq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
