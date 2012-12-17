@@ -304,5 +304,10 @@ namespace BoekenApplicatie
             Form f = new Linq();
             f.ShowDialog();
         }
+
+        private void klaslijst_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

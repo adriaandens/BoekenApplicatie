@@ -35,7 +35,7 @@ namespace BoekenApplicatie
 
             //query 2
             var q2 = from b in dc.BoekBoekenlijsts
-                     select new { b.klas, b.id_boek, b.huurprijs, b.schoolprijs };
+                     select new { b.klas, b.schoolprijs };
             this.dgv2.DataSource = q2;
         }
     }
