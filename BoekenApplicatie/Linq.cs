@@ -20,11 +20,7 @@ namespace BoekenApplicatie
 
         private void Linq_Load(object sender, EventArgs e)
         {
-            //var q1 = from boek in dc.Boeks
-            //         join cc in dc.Categories on boek.categorieID equals cc.categorieID
-            //         group boek by boek.categorieID into gg
-            //         select new { Categorie = gg.Key, aantal = gg.Count() };
-
+        
             var q1 = from cats in dc.Categories
                      join boek in dc.Boeks on cats.categorieID equals boek.categorieID
                      group cats by cats.naam into gg
@@ -34,8 +30,11 @@ namespace BoekenApplicatie
             this.dgv1.DataSource = q1;
 
             //query 2
-            var q2 = from b in dc.BoekBoekenlijsts
-                     select new { b.klas, b.schoolprijs };
+            var q2 = from b in dc.Boekenlijsts
+                     join bb in dc.BoekBoekenlijsts on b.klas equals bb.klas
+                     group new { b, bb } by bb.klas into g
+                     select new { Klas = g.Key, Totale_Prijs = g.Sum(p => p.bb.schoolprijs) };
+                     
             this.dgv2.DataSource = q2;
         }
     }
