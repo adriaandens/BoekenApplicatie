@@ -95,7 +95,6 @@ namespace BoekenApplicatie
                 //We halen de geselecteerde rij op uit de linkertabel
                 DataRowView slcBoek = boekenlijst.CurrentRow.DataBoundItem as DataRowView;
                 BoekenDataSet.BoekRow bRow = slcBoek.Row as BoekenDataSet.BoekRow;
-
                 //We gaan die zoeken in de rechtertabel
                 int nr = boekBoekenlijstBindingSource1.Find("id_boek", bRow.id);
                 if (nr != -1) //Hij zit al in de rechtertabel
@@ -158,7 +157,7 @@ namespace BoekenApplicatie
                     //Owkee, alles is goed :D
                     //We maken een nieuwe rij aan in de Boekenlijst tabel
                     string waarde_combobox = maak_klas_combobox.Text;
-                    MessageBox.Show("Waarde combobox: " + waarde_combobox + " (" + waarde_combobox.Length + ")");
+                    //MessageBox.Show("Waarde combobox: " + waarde_combobox + " (" + waarde_combobox.Length + ")");
                     DataRowView drv = boekenlijstBindingSource.AddNew() as DataRowView;
                     BoekenDataSet.BoekenlijstRow row = drv.Row as BoekenDataSet.BoekenlijstRow;
                     //We vullen hem op
@@ -176,14 +175,14 @@ namespace BoekenApplicatie
                     //Moeten we de boekenlijst kopieren of niet?
                     if (klas.Text != waarde_combobox && waarde_combobox != "")
                     { //Jup we gaan moeten kopiëren
-                        MessageBox.Show("Jup we gaan moete kopieren");
+                        //MessageBox.Show("Jup we gaan moete kopieren");
                         List<BoekenDataSet.BoekBoekenlijstRow> lijst = new List<BoekenDataSet.BoekBoekenlijstRow>();
                         foreach (DataRow dr in boekenDataSet.BoekBoekenlijst.Rows)
                         {
-                            MessageBox.Show("De klas in deze rij is " + dr["klas"].ToString());
+                            //MessageBox.Show("De klas in deze rij is " + dr["klas"].ToString());
                             if (dr["klas"].ToString() == waarde_combobox)
                             {
-                                MessageBox.Show("Deze is dus legit");
+                                //MessageBox.Show("Deze is dus legit");
                                 //Deze moeten we kopiëren
                                 //We maken een nieuwe rij aan in de BoekBoekenlijst tabel
                                 BoekenDataSet.BoekBoekenlijstRow rij = boekenDataSet.BoekBoekenlijst.NewBoekBoekenlijstRow();
@@ -212,18 +211,18 @@ namespace BoekenApplicatie
         {
             if (klassenlijst.SelectedIndex != -1 && klassenlijst.Text.Length != 0)
             {
-                MessageBox.Show("We gaan nu de rechtse tabel aanpassen, nieuwe klas: " + klassenlijst.Text);
+                //MessageBox.Show("We gaan nu de rechtse tabel aanpassen, nieuwe klas: " + klassenlijst.Text);
                 naam_van_klas = klassenlijst.Text;
                 boekBoekenlijstBindingSource1.RemoveFilter();
                 string filterTekst = "klas = '" + naam_van_klas + "'";
                 boekBoekenlijstBindingSource1.Filter = filterTekst;
                 //update opmerking textbox en status
-                MessageBox.Show("We gaan nu de opmerking aanpassen naar die van klas: " + naam_van_klas);
+                //MessageBox.Show("We gaan nu de opmerking aanpassen naar die van klas: " + naam_van_klas);
                 BoekenDataSet.BoekenlijstRow rij = boekenDataSet.Boekenlijst.FindByklas(naam_van_klas);
                 if (rij != null)
                 {
-                    MessageBox.Show("Klas rij: " + rij.klas);
-                    MessageBox.Show("Opmerking klas: " + rij.opmerking);
+                    //MessageBox.Show("Klas rij: " + rij.klas);
+                    //MessageBox.Show("Opmerking klas: " + rij.opmerking);
                     opmerking.Text = rij.opmerking;
                     //Status aanpassen
                     status_boekenlijst.SelectedIndex = rij.statusID - 1;
@@ -303,6 +302,16 @@ namespace BoekenApplicatie
         {
             Form f = new Linq();
             f.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.statusTableAdapter.Update(this.boekenDataSet.Status);
+            this.uitgeverTableAdapter.Update(this.boekenDataSet.Uitgever);
+            this.boekTableAdapter.Update(this.boekenDataSet.Boek);
+            this.categorieTableAdapter.Update(this.boekenDataSet.Categorie);
+            this.boekenlijstTableAdapter.Update(this.boekenDataSet.Boekenlijst);
+            this.boekBoekenlijstTableAdapter.Update(this.boekenDataSet.BoekBoekenlijst);
         }
     }
 }

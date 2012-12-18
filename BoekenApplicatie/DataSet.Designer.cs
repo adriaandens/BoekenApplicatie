@@ -90,6 +90,7 @@
             this.info_boekenlijst = new System.Windows.Forms.Label();
             this.statusTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.StatusTableAdapter();
             this.btnLinq = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenDataSet)).BeginInit();
@@ -642,12 +643,23 @@
             this.btnLinq.UseVisualStyleBackColor = true;
             this.btnLinq.Click += new System.EventHandler(this.btnLinq_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(487, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(266, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "SLA WIJZIGINGEN OP IN DATABANK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DataSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1199, 710);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLinq);
             this.Controls.Add(this.info_boekenlijst);
             this.Controls.Add(this.save_opmerking);
@@ -761,6 +773,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn schoolprijsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnLinq;
+        private System.Windows.Forms.Button button1;
 
     }
 }
