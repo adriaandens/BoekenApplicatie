@@ -48,7 +48,7 @@ namespace BoekenApplicatie
     #endregion
 		
 		public BoekenDataContext() : 
-				base(global::BoekenApplicatie.Properties.Settings.Default.BoekenConnectionString, mappingSource)
+				base(global::BoekenApplicatie.Properties.Settings.Default.BoekenConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -521,6 +521,8 @@ namespace BoekenApplicatie
 		
 		private System.DateTime _laatstewijziging;
 		
+		private System.Nullable<int> _aantalLeerlingen;
+		
 		private EntityRef<Status> _Status;
 		
     #region Extensibility Method Definitions
@@ -535,6 +537,8 @@ namespace BoekenApplicatie
     partial void OnopmerkingChanged();
     partial void OnlaatstewijzigingChanging(System.DateTime value);
     partial void OnlaatstewijzigingChanged();
+    partial void OnaantalLeerlingenChanging(System.Nullable<int> value);
+    partial void OnaantalLeerlingenChanged();
     #endregion
 		
 		public Boekenlijst()
@@ -623,6 +627,26 @@ namespace BoekenApplicatie
 					this._laatstewijziging = value;
 					this.SendPropertyChanged("laatstewijziging");
 					this.OnlaatstewijzigingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aantalLeerlingen", DbType="Int")]
+		public System.Nullable<int> aantalLeerlingen
+		{
+			get
+			{
+				return this._aantalLeerlingen;
+			}
+			set
+			{
+				if ((this._aantalLeerlingen != value))
+				{
+					this.OnaantalLeerlingenChanging(value);
+					this.SendPropertyChanging();
+					this._aantalLeerlingen = value;
+					this.SendPropertyChanged("aantalLeerlingen");
+					this.OnaantalLeerlingenChanged();
 				}
 			}
 		}

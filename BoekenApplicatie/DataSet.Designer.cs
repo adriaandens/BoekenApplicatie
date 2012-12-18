@@ -91,6 +91,8 @@ namespace BoekenApplicatie
             this.statusTableAdapter = new BoekenApplicatie.BoekenDataSetTableAdapters.StatusTableAdapter();
             this.btnLinq = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtaantalLeerlingen = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boekenDataSet)).BeginInit();
@@ -653,12 +655,30 @@ namespace BoekenApplicatie
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(768, 28);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(117, 14);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "Aantal Leerlingen";
+            // 
+            // txtaantalLeerlingen
+            // 
+            this.txtaantalLeerlingen.Location = new System.Drawing.Point(892, 26);
+            this.txtaantalLeerlingen.Name = "txtaantalLeerlingen";
+            this.txtaantalLeerlingen.Size = new System.Drawing.Size(100, 22);
+            this.txtaantalLeerlingen.TabIndex = 32;
+            // 
             // DataSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1199, 710);
+            this.Controls.Add(this.txtaantalLeerlingen);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLinq);
             this.Controls.Add(this.info_boekenlijst);
@@ -774,6 +794,8 @@ namespace BoekenApplicatie
         private System.Windows.Forms.DataGridViewCheckBoxColumn wordtverhuurdDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnLinq;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtaantalLeerlingen;
 
     }
 }

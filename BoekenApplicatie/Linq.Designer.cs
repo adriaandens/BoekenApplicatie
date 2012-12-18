@@ -74,7 +74,7 @@
             this.dgv1.Location = new System.Drawing.Point(88, 12);
             this.dgv1.Name = "dgv1";
             this.dgv1.ReadOnly = true;
-            this.dgv1.Size = new System.Drawing.Size(311, 150);
+            this.dgv1.Size = new System.Drawing.Size(683, 150);
             this.dgv1.TabIndex = 3;
             // 
             // dgv2
@@ -85,7 +85,7 @@
             this.dgv2.Location = new System.Drawing.Point(88, 277);
             this.dgv2.Name = "dgv2";
             this.dgv2.ReadOnly = true;
-            this.dgv2.Size = new System.Drawing.Size(311, 150);
+            this.dgv2.Size = new System.Drawing.Size(683, 150);
             this.dgv2.TabIndex = 4;
             // 
             // dgv3
@@ -96,8 +96,9 @@
             this.dgv3.Location = new System.Drawing.Point(88, 516);
             this.dgv3.Name = "dgv3";
             this.dgv3.ReadOnly = true;
-            this.dgv3.Size = new System.Drawing.Size(311, 150);
+            this.dgv3.Size = new System.Drawing.Size(683, 150);
             this.dgv3.TabIndex = 5;
+            this.dgv3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv3_CellContentClick);
             // 
             // Linq
             // 

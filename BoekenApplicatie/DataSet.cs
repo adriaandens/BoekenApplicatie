@@ -166,6 +166,8 @@ namespace BoekenApplicatie
                     row.statusID = 1;
                     row.opmerking = "Vul hier je opmerking in";
                     row.laatstewijziging = DateTime.Now;
+                    int aantal = int.Parse(txtaantalLeerlingen.Text);
+                    row.aantalLeerlingen = aantal;
                     //We stoppen met editten
                     row.EndEdit();
                     //We slagen de wijzigingen op. :)
@@ -278,7 +280,8 @@ namespace BoekenApplicatie
             if (klas.Length > 0)
             {
                 BoekenDataSet.BoekenlijstRow rij = boekenDataSet.Boekenlijst.FindByklas(klas);
-                rij.opmerking = opmerking.Text;
+                rij.opmerking = this.opmerking.Text;
+                //rij.aantalLeerlingen = int.Parse(txtaantalLeerlingen.Text);
             }
 
         }
@@ -312,6 +315,12 @@ namespace BoekenApplicatie
             this.categorieTableAdapter.Update(this.boekenDataSet.Categorie);
             this.boekenlijstTableAdapter.Update(this.boekenDataSet.Boekenlijst);
             this.boekBoekenlijstTableAdapter.Update(this.boekenDataSet.BoekBoekenlijst);
+            //var upd = (from cc in dc.Boekenlijsts
+            //           where cc.klas == this.klassenlijst.Text
+            //           select cc).First();
+            //upd.opmerking = this.opmerking.Text;
+            //upd.aantalLeerlingen = int.Parse(this.txtaantalLeerlingen.Text);
+            //dc.SubmitChanges();
         }
     }
 }

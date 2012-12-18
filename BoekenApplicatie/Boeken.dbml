@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Boeken" Class="BoekenDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|Boeken.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="BoekenApplicatie.Properties.Settings" SettingsPropertyName="BoekenConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Boeken.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="BoekenApplicatie.Properties.Settings" SettingsPropertyName="BoekenConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Boek" Member="Boeks">
     <Type Name="Boek">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -32,6 +32,7 @@
       <Column Name="statusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="opmerking" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="laatstewijziging" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="aantalLeerlingen" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Boekenlijst_BoekBoekenlijst" Member="BoekBoekenlijsts" ThisKey="klas" OtherKey="klas" Type="BoekBoekenlijst" />
       <Association Name="Status_Boekenlijst" Member="Status" ThisKey="statusID" OtherKey="statusID" Type="Status" IsForeignKey="true" />
     </Type>
