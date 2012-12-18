@@ -1,4 +1,4 @@
-﻿namespace BoekenApplicatie
+namespace BoekenApplicatie
 {
     partial class DataSet
     {
