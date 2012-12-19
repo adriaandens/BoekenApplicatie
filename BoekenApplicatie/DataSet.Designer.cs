@@ -29,7 +29,7 @@ namespace BoekenApplicatie
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
             this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,8 +137,8 @@ namespace BoekenApplicatie
             this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
             // 
@@ -667,6 +667,7 @@ namespace BoekenApplicatie
             // txtaantalLeerlingen
             // 
             this.txtaantalLeerlingen.Location = new System.Drawing.Point(892, 26);
+            this.txtaantalLeerlingen.MaxLength = 2;
             this.txtaantalLeerlingen.Name = "txtaantalLeerlingen";
             this.txtaantalLeerlingen.Size = new System.Drawing.Size(100, 22);
             this.txtaantalLeerlingen.TabIndex = 32;
@@ -713,6 +714,8 @@ namespace BoekenApplicatie
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "DataSet";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataSet_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DataSet_FormClosed);
             this.Load += new System.EventHandler(this.DataSet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.boekenlijst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BoekenBindingSource)).EndInit();

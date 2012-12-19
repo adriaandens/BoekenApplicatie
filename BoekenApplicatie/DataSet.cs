@@ -141,9 +141,9 @@ namespace BoekenApplicatie
         private void maakNieuweLijst_Click(object sender, EventArgs e)
         {
             //Check the text in the textbox: not empty, not the same name as an existing class
-            if (klas.Text.Length <= 0)
+            if (klas.Text.Length <= 0 || (txtaantalLeerlingen.Text.Length <= 0))
             {
-                MessageBox.Show("Vul de naam voor de nieuwe klas in.");
+                MessageBox.Show("Vul ALLE velden in.");
             }
             else
             {
@@ -166,7 +166,14 @@ namespace BoekenApplicatie
                     row.statusID = 1;
                     row.opmerking = "Vul hier je opmerking in";
                     row.laatstewijziging = DateTime.Now;
-                    int aantal = int.Parse(txtaantalLeerlingen.Text);
+                    int aantal;
+                    try
+                    {
+                        aantal = int.Parse(txtaantalLeerlingen.Text);
+                    }
+                    catch (Exception) {
+                        aantal = 15;
+                    }
                     row.aantalLeerlingen = aantal;
                     //We stoppen met editten
                     row.EndEdit();
@@ -246,7 +253,14 @@ namespace BoekenApplicatie
             {
                 BoekenDataSet.BoekBoekenlijstRow goed_rijtje = rijtje.Row as BoekenDataSet.BoekBoekenlijstRow;
                 aantalboeken++;
-                prijs += goed_rijtje.schoolprijs;
+                if (goed_rijtje.wordtverhuurd == 0)
+                {
+                    prijs += goed_rijtje.schoolprijs;
+                }
+                else {
+                    prijs += goed_rijtje.huurprijs;
+                }
+                
             }
             info_boekenlijst.Text = "Lijst voor " + naam_van_klas + " - Aantal boeken: " + aantalboeken + " - Totaal: " + prijs + "€";
         }
@@ -321,6 +335,29 @@ namespace BoekenApplicatie
             //upd.opmerking = this.opmerking.Text;
             //upd.aantalLeerlingen = int.Parse(this.txtaantalLeerlingen.Text);
             //dc.SubmitChanges();
+        }
+
+        private void DataSet_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void DataSet_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            klaslijst.Dispose();
+            boekenlijst.Dispose();
+            titelzoeken.Dispose();
+            Zoeken.Dispose();
+            label2.Dispose();
+            isbnzoeken.Dispose();
+            all.Dispose();
+            label3.Dispose();
+            Cat_Search.Dispose();
+            label1.Dispose();
+            Uit_Search.Dispose();
+            addtolist.Dispose();
+            removefromlist.Dispose();
+            this.Dispose();
         }
     }
 }
