@@ -12,7 +12,7 @@ namespace BoekenApplicatie
     public partial class DataSet : Form
     {
         private BoekenDataContext dc = new BoekenDataContext();
-        private string naam_van_klas; 
+        private string naam_van_klas;
 
 
 
@@ -171,7 +171,8 @@ namespace BoekenApplicatie
                     {
                         aantal = int.Parse(txtaantalLeerlingen.Text);
                     }
-                    catch (Exception) {
+                    catch (Exception)
+                    {
                         aantal = 15;
                     }
                     row.aantalLeerlingen = aantal;
@@ -246,7 +247,8 @@ namespace BoekenApplicatie
             }
         }
 
-        private void pas_info_boekenlijst_aan() {
+        private void pas_info_boekenlijst_aan()
+        {
             int aantalboeken = 0;
             decimal prijs = 0;
             foreach (DataRowView rijtje in boekBoekenlijstBindingSource1)
@@ -257,10 +259,11 @@ namespace BoekenApplicatie
                 {
                     prijs += goed_rijtje.schoolprijs;
                 }
-                else {
+                else
+                {
                     prijs += goed_rijtje.huurprijs;
                 }
-                
+
             }
             info_boekenlijst.Text = "Lijst voor " + naam_van_klas + " - Aantal boeken: " + aantalboeken + " - Totaal: " + prijs + "€";
         }
@@ -269,7 +272,8 @@ namespace BoekenApplicatie
         {
             string klasnaam = naam_van_klas; //Klas die getoond wordt
             //We gaan door de boeken loopen in boekboekenlijst
-            for (int i = 0; i < boekBoekenlijstBindingSource1.List.Count; i++) {
+            for (int i = 0; i < boekBoekenlijstBindingSource1.List.Count; i++)
+            {
                 DataRowView drv = boekBoekenlijstBindingSource1[i] as DataRowView;
                 BoekenDataSet.BoekBoekenlijstRow rij = drv.Row as BoekenDataSet.BoekBoekenlijstRow;
                 //Voor elk boek, nemen we de ID en zoeken we de ID in de boektabel.
@@ -339,7 +343,7 @@ namespace BoekenApplicatie
 
         private void DataSet_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void DataSet_FormClosed(object sender, FormClosedEventArgs e)
@@ -357,7 +361,9 @@ namespace BoekenApplicatie
             Uit_Search.Dispose();
             addtolist.Dispose();
             removefromlist.Dispose();
-            this.Dispose();
+            Application.Exit();
         }
+
+
     }
 }
