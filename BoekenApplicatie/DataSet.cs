@@ -364,6 +364,26 @@ namespace BoekenApplicatie
             Application.Exit();
         }
 
+        private void klaslijst_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            pas_info_boekenlijst_aan();
+        }
+
+        private void klaslijst_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            pas_info_boekenlijst_aan();
+        }
+
+        private void klaslijst_Validated(object sender, EventArgs e)
+        {
+            pas_info_boekenlijst_aan();
+        }
+
+        private void klaslijst_Validating(object sender, CancelEventArgs e)
+        {
+            pas_info_boekenlijst_aan();
+        }
+
 
     }
 }
