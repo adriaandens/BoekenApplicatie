@@ -29,7 +29,7 @@ namespace BoekenApplicatie
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boekenlijst = new System.Windows.Forms.DataGridView();
             this.titel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categorieID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,8 +137,8 @@ namespace BoekenApplicatie
             this.boekenlijst.ReadOnly = true;
             this.boekenlijst.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.boekenlijst.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.boekenlijst.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.boekenlijst.Size = new System.Drawing.Size(412, 394);
             this.boekenlijst.TabIndex = 0;
             // 
@@ -537,8 +537,10 @@ namespace BoekenApplicatie
             // 
             // maak_klas_combobox
             // 
+            this.maak_klas_combobox.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.maak_klas_combobox.DataSource = this.boekenlijstBindingSource;
             this.maak_klas_combobox.DisplayMember = "klas";
+            this.maak_klas_combobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.maak_klas_combobox.FormattingEnabled = true;
             this.maak_klas_combobox.Location = new System.Drawing.Point(922, 73);
             this.maak_klas_combobox.Name = "maak_klas_combobox";
@@ -547,12 +549,14 @@ namespace BoekenApplicatie
             // 
             // maakNieuweLijst
             // 
+            this.maakNieuweLijst.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.maakNieuweLijst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.maakNieuweLijst.Location = new System.Drawing.Point(991, 73);
             this.maakNieuweLijst.Name = "maakNieuweLijst";
             this.maakNieuweLijst.Size = new System.Drawing.Size(75, 23);
             this.maakNieuweLijst.TabIndex = 21;
             this.maakNieuweLijst.Text = "Maak!";
-            this.maakNieuweLijst.UseVisualStyleBackColor = true;
+            this.maakNieuweLijst.UseVisualStyleBackColor = false;
             this.maakNieuweLijst.Click += new System.EventHandler(this.maakNieuweLijst_Click);
             // 
             // annuleer_wijzigingen
@@ -650,26 +654,30 @@ namespace BoekenApplicatie
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(487, 24);
+            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(549, 42);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(266, 23);
+            this.button1.Size = new System.Drawing.Size(278, 23);
             this.button1.TabIndex = 30;
             this.button1.Text = "SLA WIJZIGINGEN OP IN DATABANK";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(768, 28);
+            this.label9.Location = new System.Drawing.Point(838, 44);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 14);
+            this.label9.Size = new System.Drawing.Size(122, 14);
             this.label9.TabIndex = 31;
-            this.label9.Text = "Aantal Leerlingen";
+            this.label9.Text = "Aantal Leerlingen:";
             // 
             // txtaantalLeerlingen
             // 
-            this.txtaantalLeerlingen.Location = new System.Drawing.Point(892, 26);
+            this.txtaantalLeerlingen.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtaantalLeerlingen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtaantalLeerlingen.Location = new System.Drawing.Point(966, 41);
             this.txtaantalLeerlingen.MaxLength = 2;
             this.txtaantalLeerlingen.Name = "txtaantalLeerlingen";
             this.txtaantalLeerlingen.Size = new System.Drawing.Size(100, 22);
